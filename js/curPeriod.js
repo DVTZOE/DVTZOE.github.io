@@ -73,4 +73,5 @@ var table = [
 function autoRefresh() {
     document.getElementById("curPeriod").innerHTML = table[new Date().getDay().toString()][Math.floor((new Date().getHours() * 60 + new Date().getMinutes() - 455)/55)];
 }
+autoRefresh();
 setInterval("autoRefresh()", 1000);
