@@ -252,10 +252,10 @@ var table = {
 }
 
 function autoRefresh() {
-	try {
+	if (table[new Date().getDay().toString()][Math.floor((new Date().getHours() * 60 + new Date().getMinutes() - 455) / 55)] != undefined) {
 		document.getElementById("curPeriod").innerHTML = table[new Date().getDay().toString()][Math.floor((new Date().getHours() * 60 + new Date().getMinutes() - 455) / 55)];
 	}
-	catch (err) {
+	else {
 		document.getElementById("curPeriod").innerHTML = "ไม่มีคาบเรียน";
 	}
 }
