@@ -1,0 +1,101 @@
+<?php
+$sql = mysql_connect("sql6.freemysqlhosting.net", "sql6524329", "SpLgEqPZwv") or die(mysql_error());
+mysql_select_db("sql6524329", $sql) or die(mysql_error());
+$query = "SELECT * FROM `todo`";
+$result = mysql_query($query, $sql) or die(mysql_error());
+$row = mysql_fetch_array($result);
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstarb -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>TDTZOE</title>
+    <script>
+        function addOldTodo() {
+            var todoList = "<?php echo json_encode($row);?>";
+            todoList.foreach( v => {
+                var li = document.createElement('p');
+                li.setAttribute('class', 'list-group-item list-group-item-action');
+                li.setAttribute('href', '#');
+                li.setAttribute('id', 'todo');
+                li.setAttribute('ondblclick', 'removeTodo()');
+                li.innerHTML = v;
+                document.getElementById("todoList").appendChild(li);
+            })
+        }
+        function addTodo() {
+            // get todo from php
+            const todo = document.getElementById('todo').value;
+            var li = document.createElement('p');
+            li.setAttribute('class', 'list-group-item list-group-item-action');
+            li.setAttribute('href', '#');
+            li.setAttribute('id', 'todo');
+            li.setAttribute('ondblclick', 'removeTodo()');
+            li.innerHTML = todo;
+            document.getElementById("todoList").appendChild(li);
+            // clear input
+            document.getElementById('todo').value = '';
+            // add todo to php
+            alert(<?php:$sql = mysql_connect("sql6.freemysqlhosting.net", "sql6524329", "SpLgEqPZwv"),or,die(mysql_error()); mysql_select_db("sql6524329", $sql),or,die(mysql_error());$query = "INSERT INTO `todo` VALUES (' . $todo . ')";$result = mysql_query($query, $sql),or,die(mysql_error());?>);
+        }
+        function removeTodo(todo) {
+            todo.remove();
+        }
+    </script>
+</head>
+
+<body>
+    <!-- use https://wallpaperaccess.com/full/1657920.png as background image -->
+    <div class="container-fluid"
+        style="background-image: url('https://wallpaperaccess.com/full/1657920.png'); height: 100vh; background-size: cover;">
+        <!-- make slideable list -->
+        <div class="row">
+            <div class="col-2">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        <h5 class="mb-1">TDTZOE</h5>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">Home</a>
+                    <a href="#" class="list-group-item list-group-item-action">About</a>
+                    <a href="#" class="list-group-item list-group-item-action">Contact</a>
+                </div>
+            </div>
+            <!-- make todo list -->
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-1">Todo List</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <input id="todo" type="text" class="form-control" placeholder="Add todo">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" onmouseup="addTodo()">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div id="todoList" class="list-group">
+                                    <p href="#" class="list-group-item list-group-item-action" ondblclick="removeTodo(this)">Todo 1</p>
+                                    <p href="#" class="list-group-item list-group-item-action" ondblclick="removeTodo(this)">Todo 2</p>
+                                    <p href="#" class="list-group-item list-group-item-action" ondblclick="removeTodo(this)">Todo 3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
