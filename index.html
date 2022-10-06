@@ -41,7 +41,7 @@ $row = mysql_fetch_array($result);
             // clear input
             document.getElementById('todo').value = '';
             // add todo to php
-            alert(<?php:$sql = mysql_connect("sql6.freemysqlhosting.net", "sql6524329", "SpLgEqPZwv"),or,die(mysql_error()); mysql_select_db("sql6524329", $sql),or,die(mysql_error());$query = "INSERT INTO `todo` VALUES (' . $todo . ')";$result = mysql_query($query, $sql),or,die(mysql_error());?>);
+            var save = '<?php:$sql = mysql_connect("sql6.freemysqlhosting.net", "sql6524329", "SpLgEqPZwv"),or,die(mysql_error()); mysql_select_db("sql6524329", $sql),or,die(mysql_error());$query = "INSERT INTO \`todo\` VALUES (\' . $todo . \')";$result = mysql_query($query, $sql),or,die(mysql_error());?>';
         }
         function removeTodo(todo) {
             todo.remove();
